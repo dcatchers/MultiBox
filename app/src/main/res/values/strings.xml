@@ -4,4 +4,247 @@
     <string name="title_activity_choose_play">ChoosePlay</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
+    <!-- zxing(start) -->
+    <string name="placeHolder">placeHolder</string>
+    <string name="seekbar_add">+</string>
+    <string name="seekbar_minus">-</string>
+    <string name="create">生成</string>
+    <string name="scan_failed">扫描失败</string>
+    <string name="bottom_hint">建议与镜头保持10CM距离，尽量避免逆光和阴影</string>
+    <string name="top_hint">将条形码或二维码置于取景框内系统会自动扫描</string>
+    <string name="msg_camera_framework_bug">抱歉，Android相机出现问题。您可能需要重启设备。</string>
+    <string name="button_ok">确定</string>
+    <!-- zxing(end) -->
+
+    <string name="standby">待机</string>
+    <string name="video_switch">TV/AV</string>
+    <string name="mute">静音</string>
+    <string name="back">返回</string>
+    <string name="channel">频道</string>
+    <string name="vol">声音</string>
+    <string name="add">+</string>
+    <string name="sub">-</string>
+    <string name="ok">确定</string>
+    <string name="home">主页</string>
+    <string name="setting">设置</string>
+    <string name="search">搜索</string>
+    <string name="menu">菜单</string>
+
+    <string name="red">R</string>
+    <string name="green">G</string>
+    <string name="yellow">Y</string>
+    <string name="blue">B</string>
+
+    <string name="num_1">1</string>
+    <string name="num_2">2</string>
+    <string name="num_3">3</string>
+    <string name="num_4">4</string>
+    <string name="num_5">5</string>
+    <string name="num_6">6</string>
+    <string name="num_7">7</string>
+    <string name="num_8">8</string>
+    <string name="num_9">9</string>
+    <string name="num_0">0</string>
+    <string name="num_s">1</string>
+    <string name="num_pound">#</string>
+    <string name="num_hash">*</string>
+
+    <string name="definition_fluency">普清</string>
+    <string name="definition_high">高清</string>
+    <string name="definition_hd2">超清</string>
+    <string name="skip_header">跳过片头</string>
+    <string name="skip_tail">跳过片尾</string>
+    <string name="auto_next">自动播放下一集</string>
+    <string name="txt_series">课节</string>
+    <string name="txt_is_live">正在直播</string>
+    <string name="toast_change_definition_fail">选择清晰度失败</string>
+    <string name="toast_data_request_completely">数据已加载完成</string>
+    <string name="alert_title_hint">提示</string>
+    <string name="alert_title_player_setting">播放器设置</string>
+    <string name="alert_player_error_network">播放器网络发生错误，是否重试？</string>
+    <string name="alert_player_error">播放器发生错误，是否重试？</string>
+    <string name="alert_player_error_unknown">播放过程出错，是否重试？</string>
+    <string name="alert_player_error_nonetwork">未连接网络，请检查网络连接</string>
+    <string name="alert_loading_error_network">网络发生错误，是否重试？</string>
+    <string name="alert_loading_error_no_play_info">无视频数据,无法播放</string>
+    <string name="alert_loading_error_fail">数据加载失败，是否重试？</string>
+    <string name="alert_loading_error_no_next">没有发现下一集，是否重试？</string>
+    <string name="alert_loading_error_no_previous">没有发现上一集，是否重试？</string>
+
+    <string name="player_locked_stated">解锁</string>
+    <string name="player_unlocked_stated">锁定</string>
+
+
+    <!-- 登录页面 -->
+    <string name="login">登录</string>
+    <string name="account">账户</string>
+    <string name="input_account">请输入用户名/手机号</string>
+    <string name="pwd">密码</string>
+    <string name="input_pwd">请输入用户密码</string>
+    <string name="loginbtn">立即登录</string>
+    <string name="wangji">重置密码</string>
+    <string name="zhuce">新注册用户</string>
+
+    <!-- 注册页面 -->
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="newzhuce">新用户注册</string>
+    <string name="num">请输入手机号</string>
+    <string name="huoquyanzhengma">点击获取验证码</string>
+    <string name="yanzhengma">请输入获取的验证码</string>
+    <string name="chu_pwd">请输入密码(可输入数字，字母，符号)</string>
+    <string name="chu_re_pwd">请再次输入密码</string>
+    <string name="regiser">立即注册</string>
+
+    <!-- 找回密码 -->
+    <string name="username_xianzhi">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_</string>
+    <string name="nicheng_show">昵称输入要在18位以内</string>
+    <string name="passwd_show">密码请输入6-18位字母数字符号组合</string>
+    <string name="username_show">用户名输入4-18位数字字母下划线组合</string>
+    <string name="zhao_top">找回密码</string>
+    <string name="zhao_num">请输入手机号</string>
+    <string name="zhao_username">请输入用户名(不能是汉字)</string>
+    <string name="zhao_mima">新密码</string>
+    <string name="zhao_btn">重置密码</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="networksettings">网络设置</string>
+    <string name="notavailable">当前网络不可用!请设置网络</string>
+    <string name="mobilenetwork">移动网络</string>
+    <string name="WIFIsetting">WIFI设置</string>
+
+    <!-- 修改密码 -->
+    <string name="xiu_queren">确认新密码</string>
+    <string name="xiu_input_queren">请输入确认密码</string>
+    <string name="xiu_now_pwd">当前密码</string>
+    <string name="xiu_input_now_pwd">请输入当前密码</string>
+    <string name="xiu_input_new_pwd">请输入6-18位密码,中间不能有空格</string>
+    <string name="queren">确认</string>
+
+    <!-- 主页面 -->
+    <string name="main_top">国安微TV</string>
+    <string name="shouye">首页</string>
+    <string name="zhibo">直播</string>
+    <string name="yaokongqi">遥控器</string>
+    <string name="yewu">业务</string>
+    <string name="wo">我</string>
+
+    <!-- 首页fragment_shouye -->
+    <string name="tuijian">推荐</string>
+    <string name="dianying">电影</string>
+    <string name="dianshiju">电视剧</string>
+    <string name="zongyi">综艺</string>
+    <string name="dongman">动漫</string>
+    <string name="jilupian">纪录片</string>
+    <string name="show_net_error">抱歉！网络连接出现问题\n请检查您的网络配置！</string>
+    <string name="toast_net_error">网络连接出现问题,加载本地缓存</string>
+    <string name="show_get_error">请求数据失败，稍后重试</string>
+    <string name="toast_get_error">请求数据失败,加载本地缓存</string>
+
+    <!-- 我fragment_me -->
+    <string name="me_name">客户-隔壁小王</string>
+    <string name="me_jidinghe_list">机顶盒列表</string>
+    <string name="me_cousme_recoder">消费记录</string>
+    <string name="me_yuyue_recoder">预约记录</string>
+    <string name="me_shoucang_recoder">收藏记录</string>
+    <string name="me_bofang_recoder">播放记录</string>
+    <string name="me_huancun">离线缓存</string>
+    <string name="me_chenshi">城市选择</string>
+    <string name="me_about">关于</string>
+    <string name="me_set">设置</string>
+
+    <!-- 业务fragment_yewu -->
+    <string name="yewu_dianshi">电视业务</string>
+    <string name="yewu_kuan">宽带业务</string>
+    <string name="yewu_wang">营业网点分布</string>
+    <string name="yewu_gu">故障报修</string>
+    <string name="yewu_hudong">互动业务</string>
+    <string name="yewu_xinzhuang">新装业务</string>
+
+    <!-- 遥控器fragment_yaokongqi -->
+    <string name="yao_shuzi">数字键</string>
+    <string name="yao_gongneng">功能键</string>
+    <string name="yao_pindao">频道</string>
+
+    <!-- 机顶盒列表显示页面  JidingheActivity -->
+    <string name="title_activity_jidinghe">JidingheActivity</string>
+    <string name="jidinghe">机顶盒</string>
+    <string name="ji_add">添加新设备</string>
+    <string name="title_activity_mine_infromation">MineInfromationActivity</string>
+
+    <!-- 个人信息 MineInfromationActivity -->
+    <string name="min_touxing">头像</string>
+    <string name="min_nicheng">昵称</string>
+    <string name="min_phone">手机号</string>
+    <string name="min_changepwd">修改密码</string>
+    <string name="min_sex">性别</string>
+    <string name="min_birthday">生日</string>
+    <string name="min_address">地址</string>
+    <string name="min_jifen">我的积分</string>
+    <string name="min_logout">退出登录</string>
+    <string name="dingou">立即订购</string>
+    <string name="title_activity_yewu_ding">YewuDingActivity</string>
+    <string name="title_activity_consum_record">ConsumRecordActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+
+    <!-- 关于 AboutActivity -->
+    <string name="ab_help">帮助</string>
+    <string name="ab_us">关于我们</string>
+    <string name="ab_info">版本信息</string>
+    <string name="ab_shengming">免责声明</string>
+    <string name="title_activity_version">VersionActivity</string>
+    <string name="ver_upda">点击更新</string>
+    <string name="ver_android">中信国安广视网络有限公司</string>
+    <string name="ver_now">当前版本：</string>
+    <string name="ver_new">最新版本：</string>
+    <string name="title_activity_about_us">AboutUsActivity</string>
+    <string name="title_activity_help">HelpActivity</string>
+
+    <!-- 帮助HelpActivity -->
+    <string name="he_zhinan">APP试用指南</string>
+    <string name="he_wenti">常见问题列表</string>
+    <string name="he_yijian">意见反馈</string>
+    <string name="top_sunmit">提交</string>
+    <string name="top_cancle">取消</string>
+    <string name="yi_input">请留下您宝贵的意见，我们将努力进行改进</string>
+    <string name="yi_phone">请留下手机号码，以便我们回复你</string>
+
+    <!-- 快速报修 -->
+    <string name="bao_name">请输入姓名</string>
+    <string name="bao_phone">请输入电话号码或手机号</string>
+    <string name="bao_cardid">请输入身份证号</string>
+    <string name="bao_address">请输入维修详细地址</string>
+    <string name="bao_ca">请输入CA卡号</string>
+    <string name="bind">绑定</string>
+
+    <string name="title_activity_city_chose">CityChoseActivity</string>
+    <string name="title_activity_change_pwd">ChangePwdActivity</string>
+    <string name="title_activity_yijian_fankui">YijianFankuiActivity</string>
+    <string name="title_activity_change_sex">ChangeSexActivity</string>
+    <string name="title_activity_change_nicheng">ChangeNichengActivity</string>
+    <string name="title_activity_change_address">ChangeAddressActivity</string>
+    <string name="title_activity_change_birthday">ChangeBirthdayActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_zhi_nan">ZhiNanActivity</string>
+    <string name="title_activity_gu_zhang">GuZhangActivity</string>
+    <string name="title_activity_shi_detail">ShiDetailActivity</string>
+    <string name="title_activity_yewu_det">YewuDetActivity</string>
+    <string name="title_activity_install_new_services">InstallNewServicesActivity</string>
+    <string name="title_activity_new_yewu_submit">NewYewuSubmitActivity</string>
+    <string name="title_activity_tv_yewu">TvYewuActivity</string>
+    <string name="title_activity_mac_business">MacBusinessActivity</string>
+    <string name="title_activity_pay">PayActivity</string>
+    <string name="title_activity_yyt_addr_info">YytAddrInfoActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_bind">BindActivity</string>
+    <string name="title_activity_search2">Search2Activity</string>
+    <string name="title_activity_pro_list">ProListActivity</string>
+    <string name="title_activity_home_more">HomeMoreActivity</string>
+    <string name="title_activity_jiemu">JiemuActivity</string>
+    <string name="title_activity_shengming">ShengmingActivity</string>
+    <string name="title_activity_complete_user_info">CompleteUserInfoActivity</string>
+    <string name="title_activity_complete2">Complete2Activity</string>
+    <string name="title_activity_register_one">RegisterOneActivity</string>
+    <string name="title_activity_first">FirstActivity</string>
 </resources>

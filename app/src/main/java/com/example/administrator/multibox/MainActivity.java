@@ -6,6 +6,7 @@ import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +18,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.administrator.control.CallBackResponseContent;
+import com.example.administrator.control.CodeConstants;
+import com.example.administrator.control.MyApplication;
 import com.example.administrator.retrofit.config.RetrofitConst;
 import com.example.administrator.retrofit.config.RetrofitUtils;
+import com.example.administrator.util.ToastFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +34,12 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
+
     Retrofit retrofit;
     private static RequestServes requestServes;
     Call<ResponseBody> call;
 
+    public MyApplication application;
 
     private ImageView imageView;
     private Button btn_command;
@@ -80,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        application = MyApplication.getMyApplication();
         btn_command = (Button)findViewById(R.id.btn_command);
         btn_TV = (Button)findViewById(R.id.btn_TV);
         btn_live=(Button)findViewById(R.id.btn_live);
@@ -175,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public  void onStart(){
         super.onStart();
@@ -196,19 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 button1_live.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("main on click test", "=============: " + RetrofitConst.getInstance().getFirstVideo());
-                        RetrofitUtils.getInstance().getData(getApplicationContext(), RetrofitConst.getInstance().getFirstVideo(), new CallBackResponseContent() {
-                            @Override
-                            public void getResponseContent(String result) {
-                                Log.d("test Response", "getResponseContent: " + result);
-                                Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void getFailContent(String result) {
-
-                            }
-                        });
+                        getFirstVideo();
 
                     }
                 });
@@ -276,5 +273,34 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+
+    private void getFirstVideo() {//获取网络数据
+        Log.d("Mainactivity", "=============: " + RetrofitConst.getInstance().getFirstVideo());
+        RetrofitUtils.getInstance().getData(getApplicationContext(), RetrofitConst.getInstance().getFirstVideo(), new CallBackResponseContent() {
+            @Override
+            public void getResponseContent(String result) {
+                Log.d("Mainactivity", "getResponseContent: " + result);
+                if (result == null || TextUtils.isEmpty(result)) {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.show_get_error),Toast.LENGTH_SHORT).show();
+                } else {
+                    MyApplication.getMyApplication().setData(CodeConstants.FIRST_DATAS, result);
+                    Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                    //setData(result);
+                }
+            }
+
+            @Override
+            public void getFailContent(String result) {
+                Log.d("Mainactivity", "getFailContent: " + result);
+                result = MyApplication.getMyApplication().getData(CodeConstants.FIRST_DATAS);
+                if (result == null || TextUtils.isEmpty(result)) {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.show_get_error),Toast.LENGTH_SHORT).show();
+                } else {
+                    ToastFactory.getToast(getApplicationContext(), getResources().getString(R.string.toast_get_error)).show();
+                    //setData(result);
+                }
+            }
+        });
     }
 }

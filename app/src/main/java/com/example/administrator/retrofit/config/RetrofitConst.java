@@ -68,7 +68,7 @@ public class RetrofitConst {
 
     private String getUrl() {
         return "http://120.202.127.36:21580/";
-       /* if (isNull(url)) {
+       /*if (isNull(url)) {
             this.url = MyApplication.getMyApplication().getData(CodeConstants.IP) +
                     MyApplication.getMyApplication().getData(CodeConstants.PORT);
         }
