@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MultiBox</string>
+
+    <string name="title_activity_choose_play">ChoosePlay</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

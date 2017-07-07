@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_6px">12px</dimen>
+    <dimen name="dimen_4px">8px</dimen>
+    <dimen name="interval_image_button">40dp</dimen>
+</resources>

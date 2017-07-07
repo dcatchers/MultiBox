@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageButton
+            android:id="@+id/imageButton_live"
+            android:layout_width="800px"
+            android:layout_height="800px"
+            app:srcCompat="@drawable/img_btn_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <ImageButton
+            android:id="@+id/imageButton_revise"
+            android:layout_width="400px"
+            android:layout_height="400px"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/imageButton_live"
+            android:layout_toRightOf="@+id/imageButton_live"
+            app:srcCompat="@drawable/img_btn_content" />
+
+        <ImageButton
+            android:id="@+id/imageButton_adv1"
+            android:layout_width="400px"
+            android:layout_height="400px"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/imageButton_revise"
+            android:layout_toRightOf="@+id/imageButton_revise"
+            app:srcCompat="@drawable/img_btn_content" />
+
+        <ImageButton
+            android:id="@+id/imageButton_adv2"
+            android:layout_width="400px"
+            android:layout_height="400px"
+            android:layout_alignLeft="@+id/imageButton_revise"
+            android:layout_alignStart="@+id/imageButton_revise"
+            android:layout_below="@+id/imageButton_revise"
+
+            app:srcCompat="@drawable/img_btn_content" />
+
+
+    </RelativeLayout>
+</LinearLayout>
