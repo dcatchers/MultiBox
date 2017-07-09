@@ -23,9 +23,12 @@ import com.example.administrator.control.MyApplication;
 import com.example.administrator.retrofit.config.RetrofitConst;
 import com.example.administrator.retrofit.config.RetrofitUtils;
 import com.example.administrator.util.ToastFactory;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -212,9 +215,22 @@ public class MainActivity extends AppCompatActivity {
 
                 button1_series = (ImageButton) findViewById(R.id.imageButton2);
                 button1_series.setImageResource(R.drawable.comfey);
+                button1_series.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getProgramByFirstVideoId(true);
+                    }
+                });
 
                 button1_film = (ImageButton) findViewById(R.id.imageButton3);
                 button1_film.setImageResource(R.drawable.lugia);
+                button1_film.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getFirstData();
+                    }
+                });
+
 
                 button1_advertisement = (ImageButton) findViewById(R.id.imageButton4);
                 button1_advertisement.setImageResource(R.drawable.victini);
@@ -274,7 +290,64 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    private void getProgramByFirstVideoId(boolean isShowDialog) {
+        final String id = "20";
+        Map<String, String> map = new HashMap<>();
+        map.put("firstVideoId", id);//FieldMap类型，主要是可以一次请求多个参数；
+        Log.d("Mainactivity", RetrofitConst.getInstance().getProgramByFirstVideoId());
 
+        Log.d("Mainactivity", RetrofitConst.getInstance().getProgramByFirstVideoId());
+        RetrofitUtils.getInstance().postData(application, RetrofitConst.getInstance().getProgramByFirstVideoId(), map, new CallBackResponseContent() {
+            @Override
+            public void getResponseContent(String result) {
+                Log.d("Mainactivity", "getResponseContent: " + result);
+
+                if (result == null || TextUtils.isEmpty(result)) {
+                    //showError(getResources().getString(R.string.show_get_error));
+                } else {
+                    MyApplication.getMyApplication().setData(CodeConstants.COMM + id, result);
+                    //setData(result);
+                }
+            }
+
+            @Override
+            public void getFailContent(String result) {
+                /*Log.d(TAG, "getFailContent: " + result);
+                result = MyApplication.getMyApplication().getData(CodeConstants.COMM + id);
+                if (isRefresh) {
+                    listView.stopRefresh();
+                }
+                if (result == null || TextUtils.isEmpty(result)) {
+                    showError(getResources().getString(R.string.show_get_error));
+                } else {
+                    ToastFactory.getToast(activity, getResources().getString(R.string.toast_get_error)).show();
+                    setData(result);
+                }*/
+            }
+        }, isShowDialog);
+    }
+
+    private void getFirstData() {
+        String Programid = "13414322";
+        Map<String, String> map = new HashMap<>();
+        map.put("programId", Programid);
+//        map.put("appUserId", MyApplication.getMyApplication().getData(CodeConstants.APPUSERID));
+        Call<JsonElement> call = RetrofitUtils.getInstance().postData(application, RetrofitConst.getInstance().getProgramByProgramIdFirst(), map,
+                new CallBackResponseContent() {
+                    @Override
+                    public void getResponseContent(String result) {
+                        Log.d("MainActivity", "getResponseContent: " + result);
+                        //setData(result);
+                    }
+
+                    @Override
+                    public void getFailContent(String result) {
+                        Log.d("MainActivity", "getFailContent: " + result);
+                        ToastFactory.getToast(application, getResources().getString(R.string.show_net_error)).show();
+                    }
+                }, true);
+        //setCall(call);
+    }
     private void getFirstVideo() {//获取网络数据
         Log.d("Mainactivity", "=============: " + RetrofitConst.getInstance().getFirstVideo());
         RetrofitUtils.getInstance().getData(getApplicationContext(), RetrofitConst.getInstance().getFirstVideo(), new CallBackResponseContent() {
@@ -283,9 +356,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Mainactivity", "getResponseContent: " + result);
                 if (result == null || TextUtils.isEmpty(result)) {
                     Toast.makeText(getApplicationContext(),getResources().getString(R.string.show_get_error),Toast.LENGTH_SHORT).show();
+
                 } else {
                     MyApplication.getMyApplication().setData(CodeConstants.FIRST_DATAS, result);
-                    Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                    ToastFactory.getToast(getApplicationContext(),result).show();
                     //setData(result);
                 }
             }
