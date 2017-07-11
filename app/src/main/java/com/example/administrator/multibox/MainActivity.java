@@ -2,8 +2,12 @@ package com.example.administrator.multibox;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -20,11 +24,15 @@ import android.widget.Toast;
 import com.example.administrator.control.CallBackResponseContent;
 import com.example.administrator.control.CodeConstants;
 import com.example.administrator.control.MyApplication;
+import com.example.administrator.retrofit.api.LoadInterface;
 import com.example.administrator.retrofit.config.RetrofitConst;
 import com.example.administrator.retrofit.config.RetrofitUtils;
 import com.example.administrator.util.ToastFactory;
 import com.google.gson.JsonElement;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +40,11 @@ import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -107,7 +119,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Object instantiateItem(ViewGroup view, int position){
               view.addView(viewLists.get(position));
-                LoadAdapter(position);
+                try {
+                    LoadAdapter(position);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 InitButton(position);
                 return viewLists.get(position);
             };
@@ -198,13 +214,32 @@ public class MainActivity extends AppCompatActivity {
 
          requestServes = retrofit.create(RequestServes.class);
 
+
     }
-    public void LoadAdapter(int position){
+
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+
+            switch (msg.what) {
+                case 11:
+                    button1_live.setImageBitmap((Bitmap) msg.obj);
+                    break;
+                case 12:
+                    button1_series.setImageBitmap((Bitmap) msg.obj);
+                    break;
+                case 13:
+                    button1_film.setImageBitmap((Bitmap)msg.obj);
+                    break;
+            }
+
+        };
+    };
+    public void LoadAdapter(int position) throws IOException {
         switch (position){
             case 0:
                 button1_live = (ImageButton) findViewById(R.id.imageButton);
                 button1_live.setImageDrawable(getResources().getDrawable(R.drawable.kyogre));
-
+                getImageFromNet("http://120.202.127.36:21580/image/rollPhoto/","9287010.jpg",11);
                 button1_live.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -215,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
 
                 button1_series = (ImageButton) findViewById(R.id.imageButton2);
                 button1_series.setImageResource(R.drawable.comfey);
+                getImageFromNet("http://120.202.127.36:21580/image/rollPhoto/","9287023.jpg",12);
                 button1_series.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -224,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
 
                 button1_film = (ImageButton) findViewById(R.id.imageButton3);
                 button1_film.setImageResource(R.drawable.lugia);
+                getImageFromNet("http://120.202.127.36:21580/image/poster/","8524.jpg",13);
                 button1_film.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -253,6 +290,12 @@ public class MainActivity extends AppCompatActivity {
 
                 button2_revise = (ImageButton)findViewById(R.id.imageButton_revise);
                 button2_revise.setImageResource(R.drawable.garchomp);
+
+                Bitmap bitmap2 = BitmapFactory.decodeFile("http://120.202.127.36:21580/image/rollPhoto/9287010.jpg");
+                Uri uri = Uri.fromFile(new File("http://120.202.127.36:21580/image/rollPhoto/9287010.jpg"));
+                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse("http://120.202.127.36:21580/image/rollPhoto/9287010.jpg"));
+                button2_revise.setImageBitmap(bitmap2);
+                button2_revise.setImageURI(uri);
 
                 button2_adv1 = (ImageButton)findViewById(R.id.imageButton_adv1);
                 button2_adv1.setImageResource(R.drawable.victini);
@@ -378,4 +421,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private Bitmap getImageFromNet(String string,String picId, final Integer ID){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(string)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) //添加Rxjava
+                .addConverterFactory(GsonConverterFactory.create()) // <span style="font-family: Arial, Helvetica, sans-serif;">定义转化器 可以将结果返回一个json格式</span>
+                .build();
+
+        LoadInterface serviceApi = retrofit.create(LoadInterface.class);
+
+        Call<ResponseBody> call = serviceApi.downloadPicFromNet(picId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                InputStream is = response.body().byteStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(is);
+
+                Message msg = new Message();
+                // 把bm存入消息中,发送到主线程
+                msg.obj = bitmap;
+                msg.what = ID;
+                handler.sendMessage(msg);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                Log.d("what?","what?");
+            }
+        });
+        return  null;
+
+    }
+
 }

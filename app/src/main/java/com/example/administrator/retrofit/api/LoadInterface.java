@@ -26,6 +26,8 @@ public interface LoadInterface {
     @GET
     Call<ResponseBody> loadFileWithFull(@Url String url);
 
+    @GET
+    Call<ResponseBody> downloadPicFromNet(@Url String fileUrl);
     /**
      * 请求网络数据
      */
